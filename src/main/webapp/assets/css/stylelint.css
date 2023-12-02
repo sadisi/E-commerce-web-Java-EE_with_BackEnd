@@ -1,0 +1,26 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.invoice-container {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.invoice-header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-body {
+    padding: 20px;
+}
+
+.invoice-footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
