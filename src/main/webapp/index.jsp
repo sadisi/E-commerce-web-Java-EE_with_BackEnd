@@ -135,16 +135,19 @@
 							<div class="product-detail position-relative">
 								<a href="moreinfo.jsp">
 									<h6 class="name">
-										<%=p.getName() %>
+										<%=p.getCategory() %>
 									</h6>
 								</a>
 
-								<h6 class="sold weight text-content fw-normal"><%=p.getCategory() %></h6>
+								<h6 class="sold weight text-content fw-normal"> <%=p.getName() %></h6>
 
-								<h6 class="price theme-color">Price: Rs<%=p.getPrice() %></h6>
+								<h6 class="price theme-color"> Rs. <%=p.getPrice() %></h6>
 
 								<div class="add-to-cart-box bg-white">
-									<button class="btn btn-add-cart addcart-button" href="add-to-cart?id=<%=p.getId()%>">Add to Cart</button>
+									<a href="add-to-cart?id=<%=p.getId()%>">
+										<button class="btn btn-add-cart addcart-button" >Add to Cart</button>
+									</a>
+
 								</div>
 							</div>
 						</div>
@@ -198,9 +201,6 @@
 <!-- Bg overlay Start -->
 <div class="bg-overlay"></div>
 <!-- Bg overlay End -->
-
-
-
 
 
 <%@include file="/includes/footer.jsp"%>
