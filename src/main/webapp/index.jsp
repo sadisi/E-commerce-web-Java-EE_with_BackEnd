@@ -21,8 +21,8 @@
 <html>
 <head>
 	<%@include file="/includes/head.jsp"%>
-	<link rel="icon" href="assets/images/favicon/6.png" type="image/x-icon">
-	<title>Green Store</title>
+
+	<title>Swift Super</title>
 
 	<style>
 		html, body {
@@ -43,8 +43,19 @@
 	</style>
 
 </head>
-<body>
+<body class="theme-color-4 bg-gradient-color">
 <%@include file="/includes/navbar.jsp"%>
+
+<!-- Loader Start -->
+<div class="fullpage-loader">
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+
+</div>
+<!-- Loader End -->
 
 
 <div class="wrapper">
