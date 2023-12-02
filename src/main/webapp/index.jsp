@@ -95,7 +95,7 @@
 							 alt="Card image cap">
 						<div class="card-body">
 							<h5 class="card-title"><%=p.getName() %></h5>
-							<h6 class="price">Price: $<%=p.getPrice() %></h6>
+							<h6 class="price">Price: Rs<%=p.getPrice() %></h6>
 							<h6 class="category">Category: <%=p.getCategory() %></h6>
 						</div>
 						<div class="d-flex justify-content-center mb-3">
