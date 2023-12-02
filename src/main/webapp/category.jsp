@@ -6,6 +6,14 @@
 <%@include file="/includes/head.jsp"%>
 <head>
     <title>Swift Super</title>
+    <style>
+        .addcart-button:hover{
+            color: #ffffff;
+            transition: 0.8s;
+            background-color: #6262a6;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -148,7 +156,7 @@
                                                     <div class="drop-cart">
                                                         <a href="#" class="drop-image">
                                                             <img src="assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">
+                                                                 class="blur-up lazyload" alt="">z
                                                         </a>
 
                                                         <div class="drop-contain">
@@ -171,7 +179,7 @@
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="viewcart.jsp" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
                                                 <a href="checkout.jsp" class="btn btn-sm cart-button theme-bg-colortext-white">Checkout</a>
                                             </div>
                                         </div>
@@ -663,32 +671,32 @@
 
                                                     <div class="dropdown-column col-xl-3">
                                                         <h5 class="dropdown-header">Baby Tender</h5>
-                                                        <a class="dropdown-item" href="index.jsp">Beans
+                                                        <a class="dropdown-item" href="#">Beans
                                                             & Brinjals</a>
 
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Broccoli & Cauliflower</a>
+                                                           href="#">Broccoli & Cauliflower</a>
 
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Chilies, Garlic</a>
+                                                           href="#">Chilies, Garlic</a>
 
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Vegetables & Salads</a>
+                                                           href="#">Vegetables & Salads</a>
 
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Gourd, Cucumber</a>
+                                                           href="#">Gourd, Cucumber</a>
 
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Potatoes & Tomatoes</a>
+                                                           href="##">Potatoes & Tomatoes</a>
 
-                                                        <a href="index.jsp" class="dropdown-item">Peas
+                                                        <a href="#" class="dropdown-item">Peas
                                                             & Corn</a>
                                                     </div>
 
                                                     <div class="dropdown-column col-xl-3">
                                                         <h5 class="dropdown-header">Exotic Vegetables</h5>
                                                         <a class="dropdown-item"
-                                                           href="index.jsp">Asparagus & Artichokes</a>
+                                                           href="#">Asparagus & Artichokes</a>
 
                                                         <a class="dropdown-item"
                                                            href="index.jsp">Avocados & Peppers</a>
@@ -780,7 +788,7 @@
         </li>
 
         <li>
-            <a href="viewcart.jsp">
+            <a href="cart.jsp">
                 <i class="iconly-Bag-2 icli fly-cate"></i>
                 <span>Cart</span>
             </a>
@@ -799,7 +807,7 @@
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.html">
+                                <a href="index.jsp">
                                     <i class="fa-solid fa-house"></i>
                                 </a>
                             </li>
@@ -823,7 +831,7 @@
                 <div class="slider-1 slider-animate product-wrapper no-arrow">
                     <div>
                         <div class="banner-contain-2 hover-effect">
-                            <img src="assets/images/shop/4.png" class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <img src="assets/images/shop/4a.png" class="bg-img rounded-3 blur-up lazyload" alt="">
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
@@ -836,17 +844,29 @@
 
                     <div>
                         <div class="banner-contain-2 hover-effect">
-                            <img src="assets/images/shop/4a.png" class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <img src="assets/images/shop/5.png" class="bg-img rounded-3 blur-up lazyload" alt="">
                             <div
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
-                                    <h2>Healthy, nutritious & Biscuits & Snacks</h2>
+                                    <h2>Healthy, nutritious & meat & Sea food</h2>
                                     <h3>Save upto 50%</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <div>
+                        <div class="banner-contain-2 hover-effect">
+                            <img src="assets/images/shop/6.png" class="bg-img rounded-3 blur-up lazyload" alt="">
+                            <div
+                                    class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
+                                <div>
+                                    <h2>Healthy, nutritious & Milks & Cheese</h2>
+                                    <h3>Save upto 35%</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <div class="banner-contain-2 hover-effect">
                             <img src="assets/images/shop/4b.png" class="bg-img rounded-3 blur-up lazyload" alt="">
@@ -954,7 +974,9 @@
                                     <h5 class="price"><span class="theme-color">Rs. <%=p.getPrice() %></span>
                                     </h5>
                                     <div class="add-to-cart-box bg-white">
-                                        <button class="btn btn-add-cart addcart-button"  > <a href="add-to-cart?id=<%=p.getId()%>">Add to Cart</a> </button>
+                                        <a href="add-to-cart?id=<%=p.getId()%>">
+                                            <button class="btn btn-add-cart addcart-button" >Add to Cart</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

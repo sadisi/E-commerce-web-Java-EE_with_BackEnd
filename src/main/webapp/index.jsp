@@ -21,7 +21,14 @@
 <html>
 <head>
 	<%@include file="/includes/head.jsp"%>
+	<style>
+		.addcart-button:hover{
+			color: #ffffff;
+			transition: 0.8s;
+			background-color: #6262a6;
+		}
 
+	</style>
 	<title>Swift Super</title>
 
 

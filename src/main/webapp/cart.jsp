@@ -29,12 +29,12 @@ if (cart_list != null) {
 <title>Green Store Cart</title>
 <style type="text/css">
 
-.table tbody td{
-vertical-align: middle;
-}
-.btn-incre, .btn-decre{
-box-shadow: none;
-font-size: 25px;
+  .table tbody td{
+            ertical-align: middle;
+    }
+    .btn-incre, .btn-decre{
+            box-shadow: none;
+           font-size: 25px;
 }
 </style>
 </head>
@@ -42,7 +42,7 @@ font-size: 25px;
 
 
 	<div class="container my-3">
-		<div class="d-flex py-3"><h3>Total Price: $ ${(total>0)?dcf.format(total):0} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
+		<div class="d-flex py-3"><h3>Total Price: Rs. ${(total>0)?dcf.format(total):0} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
 		<table class="table table-light">
 			<thead>
 				<tr>

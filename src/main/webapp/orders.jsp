@@ -29,9 +29,18 @@
 <head>
 <%@include file="/includes/head.jsp"%>
 <title>Green Store Orders</title>
+
+	<style>
+		.space-top-botom-default-order{
+			padding-top: 120px;
+			padding-bottom: 10px;
+		}
+	</style>
 </head>
 <body>
 	<%@include file="/includes/navbar.jsp"%>
+
+	<div class="space-top-botom-default-order">
 	<div class="container">
 		<div class="card-header my-3">All Orders</div>
 		<table class="table table-light">
@@ -64,6 +73,7 @@
 			
 			</tbody>
 		</table>
+	</div>
 	</div>
 	<%@include file="/includes/footer.jsp"%>
 </body>
