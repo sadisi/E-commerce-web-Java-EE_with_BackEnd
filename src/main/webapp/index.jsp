@@ -24,23 +24,6 @@
 
 	<title>Swift Super</title>
 
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-
-		.wrapper {
-			min-height: 100%;
-			display: flex;
-			flex-direction: column;
-		}
-
-		.content {
-			flex: 1;
-		}
-	</style>
 
 </head>
 <body class="theme-color-4 bg-gradient-color">
@@ -57,64 +40,195 @@
 </div>
 <!-- Loader End -->
 
+<!-- Product Section Start -->
+<section class="product-section pt-0">
+	<div class="container-fluid p-0">
+		<div class="custom-row">
+			<div class="sidebar-col">
+				<div class="category-menu">
+					<a href="index.jsp" class="web-logo nav-logo">
+						<img src="assets/images/logo/5.png" class="img-fluid blur-up lazyload" alt="">
+					</a>
+					<ul>
+						<%
+							Set<String> uniqueCategories = new HashSet<>();
+							for (Product p : products) {
+								uniqueCategories.add(p.getCategory());
+							}
+							for (String category : uniqueCategories) {
+						%>
 
-<div class="wrapper">
-<div class="col-md-10">
-	<div class="row">
-		<!-- Display categories vertically on the left side -->
-		<div class="col-md-2 my-1">
-			<div class="card w-100 h-75">
-				<div class="card-body">
-					<div class="card-header my-3">All Categories</div>
-					<%
-						Set<String> uniqueCategories = new HashSet<>();
-						for (Product p : products) {
-							uniqueCategories.add(p.getCategory());
-						}
-						for (String category : uniqueCategories) {
-					%>
-					<h5 class="card-title"><a href="category.jsp?category=<%= category %>"><%= category %></a></h5>
-					<%
-						}
-					%>
+						<li>
+							<div class="category-list">
+								<h5>
+									<a href="category.jsp?category=<%= category %>"><%= category %></a>
+								</h5>
+							</div>
+						</li>
+						<%
+							}
+						%>
+					</ul>
 				</div>
 			</div>
-		</div>
 
-		<!-- Display products in the remaining space -->
-		<div class="col-md-10">
-			<div class="card-header my-3">All Products</div>
-			<div class="row">
-				<%
-					if (!products.isEmpty()) {
-						for (Product p : products) {
-				%>
-				<div class="col-md-2 my-3">
-					<div class="card w-100 h-100">
-						<img class="card-img-top" src="ProductImages/<%=p.getImage() %>"
-							 alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title"><%=p.getName() %></h5>
-							<h6 class="price">Price: Rs<%=p.getPrice() %></h6>
-							<h6 class="category">Category: <%=p.getCategory() %></h6>
+			<div class="content-col">
+				<div class="section-b-space">
+					<div class="row g-md-4 g-3">
+						<div class="col-xxl-8 col-xl-12 col-md-7">
+							<div class="banner-contain hover-effect">
+								<img src="assets/images/grocery/banner/11.jpg" class="bg-img blur-up lazyload"
+									 alt="">
+								<div class="banner-details p-center-left p-sm-5 p-4">
+									<div>
+										<h2 class="text-kaushan fw-normal orange-color">Sift Super</h2>
+										<h3 class="mt-2 mb-3 text-white">TAKE ON THE DAY!</h3>
+										<p class="text-content banner-text text-white opacity-75 d-md-block d-none">
+											Sift Super new way to Shoping.</p>
+										<button onclick="location.href = 'shop-left-sidebar.html';"
+												class="btn btn-animation btn-sm mend-auto">Shop Now <i
+												class="fa-solid fa-arrow-right icon"></i></button>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="d-flex justify-content-center mb-3">
-							<a class="btn btn-dark" href="add-to-cart?id=<%=p.getId()%>">Add to Cart</a>
+
+						<div class="col-xxl-4 col-xl-12 col-md-5">
+							<div class="banner-contain hover-effect h-100">
+								<img src="assets/images/grocery/banner/12.jpg" class="bg-img blur-up lazyload"
+									 alt="">
+								<div class="banner-details p-center-left p-4 h-100">
+									<div>
+										<h2 class="text-kaushan fw-normal orange-color">Organic</h2>
+										<h3 class="mt-2 mb-3">Fresh</h3>
+										<p class="text-content banner-text w-100">Super Offer to 50%
+											Off</p>
+										<button onclick="location.href = 'shop-left-sidebar.html';"
+												class="btn btn-animation btn-sm mend-auto">Shop Now <i
+												class="fa-solid fa-arrow-right icon"></i></button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<%
+
+				<div class="title d-block">
+					<h2 class="text-theme font-sm">Food Cupboard</h2>
+					<p>A virtual assistant collects the products from your list</p>
+				</div>
+
+				<div class="row row-cols-xxl-6 row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-2 g-sm-4 g-3 section-b-space">
+					<%
+						if (!products.isEmpty()) {
+							for (Product p : products) {
+					%>
+					<div>
+						<div class="product-box product-white-bg wow fadeIn">
+							<div class="product-image">
+								<a href=#>
+									<img src="ProductImages/<%=p.getImage() %>"
+										 class="img-fluid blur-up lazyload" alt="">
+								</a>
+
+							</div>
+							<div class="product-detail position-relative">
+								<a href="moreinfo.jsp">
+									<h6 class="name">
+										<%=p.getName() %>
+									</h6>
+								</a>
+
+								<h6 class="sold weight text-content fw-normal"><%=p.getCategory() %></h6>
+
+								<h6 class="price theme-color">Price: Rs<%=p.getPrice() %></h6>
+
+								<div class="add-to-cart-box bg-white">
+									<button class="btn btn-add-cart addcart-button" href="add-to-cart?id=<%=p.getId()%>">Add to Cart</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<%
+							}
 						}
-					} else {
-						out.println("There is no products");
-					}
-				%>
+						else
+						{
+							out.println("There is no products");
+						}
+					%>
+				</div>
 			</div>
 		</div>
 	</div>
+</section>
+<!-- Product Section End -->
+
+<!-- Cookie Bar Box Start -->
+<div class="cookie-bar-box">
+	<div class="cookie-box">
+		<div class="cookie-image">
+			<img src="assets/images/cookie-bar.png" class="blur-up lazyload" alt="">
+			<h2>Cookies!</h2>
+		</div>
+
+		<div class="cookie-contain">
+			<h5 class="text-content">We use cookies to make your experience better</h5>
+		</div>
+	</div>
+
+	<div class="button-group">
+		<button class="btn privacy-button">Privacy Policy</button>
+		<button class="btn ok-button">OK</button>
+	</div>
 </div>
+<!-- Cookie Bar Box End -->
+
+
+<!-- Tap to top start -->
+<div class="theme-option">
+	<div class="back-to-top">
+		<a id="back-to-top" href="#">
+			<i class="fas fa-chevron-up"></i>
+		</a>
+	</div>
 </div>
+<!-- Tap to top end -->
+
+<!-- Bg overlay Start -->
+<div class="bg-overlay"></div>
+<!-- Bg overlay End -->
+
+
+
+
 
 <%@include file="/includes/footer.jsp"%>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

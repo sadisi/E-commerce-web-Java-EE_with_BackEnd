@@ -6,7 +6,7 @@
 <%@include file="/includes/head.jsp"%>
 <html>
 <head>
-    <title>Green Store Category</title>
+    <title>Swift Super</title>
 </head>
 <body>
 
@@ -24,7 +24,7 @@
                 <img class="card-img-top" src="ProductImages/<%=p.getImage() %>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><%=p.getName() %></h5>
-                    <h6 class="price">Price: Rs<%=p.getPrice() %></h6>
+                    <h6 class="price">Price: Rs. <%=p.getPrice() %></h6>
                     <h6 class="category">Category: <%=p.getCategory() %></h6>
                     <div class="mt-3 d-flex justify-content-between">
                         <a class="btn btn-dark" href="add-to-cart?id=<%=p.getId()%>">Add to Cart</a>
