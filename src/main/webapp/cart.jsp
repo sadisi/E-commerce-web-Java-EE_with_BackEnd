@@ -31,16 +31,22 @@ if (cart_list != null) {
 
   .table tbody td{
             ertical-align: middle;
-    }
+     }
     .btn-incre, .btn-decre{
             box-shadow: none;
            font-size: 25px;
-}
+         }
+
+
+  .space-cart{
+	  padding-top: 60px;
+	  padding-bottom: 10px;
+  }
 </style>
 </head>
 <body>
 
-
+<div class="space-cart">
 	<div class="container my-3">
 		<div class="d-flex py-3"><h3>Total Price: Rs. ${(total>0)?dcf.format(total):0} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
 		<table class="table table-light">
@@ -81,6 +87,7 @@ if (cart_list != null) {
 			</tbody>
 		</table>
 	</div>
+</div>
 
 	<%@include file="/includes/footer.jsp"%>
 </body>

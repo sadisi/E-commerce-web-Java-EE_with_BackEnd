@@ -53,7 +53,7 @@
 		<div class="custom-row">
 			<div class="sidebar-col">
 				<div class="category-menu">
-					<a href="index.jsp" class="web-logo nav-logo">
+					<a href="ordersuccess.jsp" class="web-logo nav-logo">
 						<img src="assets/images/logo/5.png" class="img-fluid blur-up lazyload" alt="">
 					</a>
 					<ul>

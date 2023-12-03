@@ -99,11 +99,10 @@
                                 <div class="input-group">
                   <span class="input-group-text">
                     <i data-feather="search" class="font-light"></i>
-                  </span>
+                        </span>
                                     <input type="text" class="form-control search-type" placeholder="Search here..">
-                                    <span class="input-group-text close-search">
-                    <i data-feather="x" class="font-light"></i>
-                  </span>
+                                    <span class="input-group-text close-search"><i data-feather="x" class="font-light"></i>
+                                    </span>
                                 </div>
                             </div>
                             <ul class="right-side-menu">
@@ -117,9 +116,9 @@
                                     </div>
                                 </li>
                                 <li class="right-side">
-                                    <a href="#" class="delivery-login-box">
+                                    <a href="index.jsp" class="delivery-login-box">
                                         <div class="delivery-icon">
-                                            <i data-feather="phone-call"></i>
+                                          <h2>Home</h2>
                                         </div>
                                     </a>
                                 </li>
@@ -127,62 +126,10 @@
                                     <div class="onhover-dropdown header-badge">
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                              <span class="visually-hidden">unread messages</span>
+                                            <span class="position-absolute top-0 start-100 translate-middle badge">
+                                                ${cart_list.size()}
                                            </span>
                                         </button>
-
-                                        <div class="onhover-div">
-                                            <ul class="cart-list">
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="#" class="drop-image">
-                                                            <img src="assets/images/vegetable/product/1.png" class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="#">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="#" class="drop-image">
-                                                            <img src="assets/images/vegetable/product/2.png"
-                                                                 class="blur-up lazyload" alt="">z
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="#">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                            <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <a href="cart.jsp" class="btn btn-sm cart-button">View Cart</a>
-                                                <a href="checkout.jsp" class="btn btn-sm cart-button theme-bg-colortext-white">Checkout</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </li>
                                 <li class="right-side onhover-dropdown">
@@ -197,14 +144,6 @@
                                             <li class="product-box-contain">
                                                 <i></i>
                                                 <a href="login.jsp">Log In</a>
-                                            </li>
-
-                                            <li class="product-box-contain">
-                                                <a href="signup.jsp">Register</a>
-                                            </li>
-
-                                            <li class="product-box-contain">
-                                                <a href="#">Forgot Password</a>
                                             </li>
                                         </ul>
                                     </div>
