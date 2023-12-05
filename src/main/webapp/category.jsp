@@ -813,7 +813,7 @@
                                     class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
                                 <div>
                                     <h2>Healthy, nutritious & Biscuits & Snacks</h2>
-                                    <h3>Save upto 50%</h3>
+                                    <h3>Save upto 52%</h3>
                                 </div>
                             </div>
                         </div>

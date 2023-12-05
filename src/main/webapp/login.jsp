@@ -16,7 +16,7 @@
 <html>
 <head>
 <%@include file="/includes/head.jsp"%>
-<title>Swift Supper</title>
+<title>Swift Supper Login</title>
 </head>
 <body>
 	<%@include file="/includes/navbar.jsp"%>

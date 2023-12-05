@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<title>Green Store Sign Up</title>
+<title>Swift Super Sign Up</title>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

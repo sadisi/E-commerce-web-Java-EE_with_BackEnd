@@ -26,7 +26,7 @@ if (cart_list != null) {
 <html>
 <head>
 <%@include file="/includes/head.jsp"%>
-<title>Green Store Cart</title>
+<title>Swift Super</title>
 <style type="text/css">
 
   .table tbody td{
