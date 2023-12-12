@@ -14,10 +14,10 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "AddToCartServlet", urlPatterns = "/add-to-cart")
 public class AddToCartServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
         try (PrintWriter out = response.getWriter()) {
 //        	out.print("add to cart servlet");
@@ -50,6 +50,6 @@ public class AddToCartServlet extends HttpServlet {
                 }
             }
         }
-	}
+    }
 
 }

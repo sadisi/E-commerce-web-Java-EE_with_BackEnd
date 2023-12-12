@@ -20,42 +20,26 @@
 %>
 
 
-<form>
-<!-- Your existing form fields go here -->
-<h2>Current Address</h2>
-<%
-    for (Address address : addresses) {
-        // Display address details
-%>
-<div>
-    <p><strong>Address:</strong> <%= address.getAddress() %></p>
-    <p><strong>City:</strong> <%= address.getCity() %></p>
-    <p><strong>Zipcode:</strong> <%= address.getZipcode() %></p>
-    <p><strong>Mobile Number:</strong> <%= address.getMobileNumber() %></p>
+<form action="/Checkout-Servlet" method="post">
+    <!-- Your existing form fields go here -->
+    <h2>Current Address</h2>
+    <% for (Address address : addresses) { %>
+    <div>
+        <p><strong>Address:</strong> <%= address.getAddress() %></p>
+        <p><strong>City:</strong> <%= address.getCity() %></p>
+        <p><strong>Zipcode:</strong> <%= address.getZipcode() %></p>
+        <p><strong>Mobile Number:</strong> <%= address.getMobileNumber() %></p>
 
-    <!-- You can also provide an option to edit or delete the address if needed -->
+        <!-- Hidden fields to store the selected address details -->
+        <input type="hidden" name="selectedAddress" value="<%= address.getAddress() %>">
+        <input type="hidden" name="selectedCity" value="<%= address.getCity() %>">
+        <input type="hidden" name="selectedZipcode" value="<%= address.getZipcode() %>">
+        <input type="hidden" name="selectedMobileNumber" value="<%= address.getMobileNumber() %>">
 
-    <hr>
-    <button type="button" id="editButton" onclick="toggleEdit(document.getElementById('enableEdit'))">Checkout</button>
-</div>
-<%
-    }
-} else {
-%>
-
-<p>No addresses found for the user.</p>
-<%
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle the exception
-        }
-    } else {
-        // If the user is not logged in, redirect to the login page
-        response.sendRedirect("login.jsp");
-    }
-%>
-
+        <hr>
+        <button type="submit">Checkout</button>
+    </div>
+    <% } %>
 </form>
 <div></div>
 <form action="address" method="post">
@@ -172,3 +156,19 @@
 
 </body>
 </html>
+
+<%
+} else {
+%>
+<p>No addresses found for the user.</p>
+<%
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
+    } else {
+        // If the user is not logged in, redirect to the login page
+        response.sendRedirect("login.jsp");
+    }
+%>

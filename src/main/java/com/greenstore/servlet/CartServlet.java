@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/cart-check-out")
-public class CheckOutServlet extends HttpServlet {
+public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    

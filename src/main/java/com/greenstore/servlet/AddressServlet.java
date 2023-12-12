@@ -27,9 +27,9 @@ public class AddressServlet extends HttpServlet {
                 AddressDao addressDao = new AddressDao(DbCon.getConnection());
                 List<Address> addresses = addressDao.getAddressesByUserId(auth.getId());
 
-                request.setAttribute("Address.jsp", addresses);
+                request.setAttribute("addresses", addresses);
                 request.setAttribute("userId", auth.getId());
-                request.getRequestDispatcher("Address.jsp").forward(request, response);
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Handle the exception
@@ -43,7 +43,7 @@ public class AddressServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try (PrintWriter out = response.getWriter()) {
+        try {
             User auth = (User) request.getSession().getAttribute("auth");
             if (auth != null) {
                 // Retrieve address details from the form
@@ -68,10 +68,12 @@ public class AddressServlet extends HttpServlet {
                         boolean updateResult = addressDao.updateAddress(existingAddress);
 
                         if (updateResult) {
-                            response.sendRedirect("address");
+                            // Redirect to checkout.jsp after address update
+                            response.sendRedirect("checkout.jsp");
                         } else {
                             // Handle address update failure
-                            out.println("Failed to update address.");
+                            request.setAttribute("updateError", "Failed to update address.");
+                            doGet(request, response);
                         }
                     } else {
                         // User doesn't have an address, insert a new one
@@ -85,10 +87,12 @@ public class AddressServlet extends HttpServlet {
                         boolean insertResult = addressDao.insertAddress(newAddress);
 
                         if (insertResult) {
-                            response.sendRedirect("address");
+                            // Redirect to checkout.jsp after address insertion
+                            response.sendRedirect("checkout.jsp");
                         } else {
                             // Handle address insertion failure
-                            out.println("Failed to insert address.");
+                            request.setAttribute("insertError", "Failed to insert address.");
+                            doGet(request, response);
                         }
                     }
                 } catch (SQLException e) {
@@ -104,6 +108,4 @@ public class AddressServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
 }
-
