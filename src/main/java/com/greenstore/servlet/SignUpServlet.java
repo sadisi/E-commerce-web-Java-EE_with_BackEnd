@@ -35,7 +35,7 @@ public class SignUpServlet extends HttpServlet {
         // JDBC connection and insertion code
         String jdbcURL = "jdbc:mysql://localhost:3306/greenstore";
         String jdbcUsername = "root";
-        String jdbcPassword = "123789";
+        String jdbcPassword = "mysqlroot";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

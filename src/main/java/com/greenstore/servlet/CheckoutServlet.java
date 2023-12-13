@@ -1,9 +1,9 @@
 package com.greenstore.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import com.greenstore.model.Cart;
+import com.greenstore.model.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/Checkout-Servlet")
 public class CheckoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -23,6 +22,16 @@ public class CheckoutServlet extends HttpServlet {
         ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cart-list");
 
         if (cartList != null && !cartList.isEmpty()) {
+            // Retrieve user email from the session (assuming it is set during login)
+            User auth = (User) session.getAttribute("auth");
+            String userEmail = auth.getEmail(); // Replace with the actual method to get the user's email from the User object
+
+            // Retrieve orderNum from the session
+            String orderNum = (String) session.getAttribute("orderNum");
+
+            // Send order confirmation email
+            SendEmailUtil.sendOrderConfirmationEmail(userEmail, orderNum);
+
             session.setAttribute("checkout-cart-list", cartList);
 
             // Retrieve selected address details from request parameters

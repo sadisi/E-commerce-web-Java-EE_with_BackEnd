@@ -39,7 +39,26 @@
         <hr>
         <button type="submit">Checkout</button>
     </div>
-    <% } %>
+
+
+    <%
+        }
+    } else {
+    %>
+
+    <p>No addresses found for the user.</p>
+    <%
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Handle the exception
+            }
+        } else {
+            // If the user is not logged in, redirect to the login page
+            response.sendRedirect("login.jsp");
+        }
+    %>
+
 </form>
 <div></div>
 <form action="address" method="post">
@@ -156,19 +175,3 @@
 
 </body>
 </html>
-
-<%
-} else {
-%>
-<p>No addresses found for the user.</p>
-<%
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle the exception
-        }
-    } else {
-        // If the user is not logged in, redirect to the login page
-        response.sendRedirect("login.jsp");
-    }
-%>

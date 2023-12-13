@@ -27,12 +27,17 @@
     String selectedCity = (String) request.getAttribute("selectedCity");
     String selectedZipcode = (String) request.getAttribute("selectedZipcode");
     String selectedMobileNumber = (String) request.getAttribute("selectedMobileNumber");
+
+
 %>
 <html>
 <head>
     <title>Checkout - Swift Super</title>
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://www.paypal.com/sdk/js?client-id=ARQyk4Cfn32QiSJtEfkvSFXs6oR5VhPpXNzWHg8aDS7mArEIiUZg-y09D6kJuxgKDdxemvS35SfzGsn0"></script>
+
     <!-- Add your custom styles here -->
     <style>
         body {
@@ -131,9 +136,21 @@
     <div class="total-price">
         <h3>Total Price:RS.<%=dcf.format(total)%></h3>
     </div>
-    <div>
-        <button type="submit">Pay Now</button>
+<form>
+    <div id="paypal-button-container"></div>
+</form>
+
+
+    <!-- Success message container -->
+    <div id="success-message" style="display: none;">
+        <h4>Payment Successful!</h4>
+        <p>Thank you for your purchase.</p>
+
+        <!-- Add a button to go to the order page -->
+        <button onclick="goToOrderPage()">Go to My Orders</button>
+
     </div>
+
 </div>
 
 <div class="container selected-address">
@@ -143,6 +160,72 @@
     <p><strong>Zipcode:</strong> <%=selectedZipcode%></p>
     <p><strong>Mobile Number:</strong> <%=selectedMobileNumber%></p>
 </div>
+
+
+<script>
+    function goToOrderPage() {
+        // Redirect to the order page or update the location as needed
+        window.location.href = '/orders.jsp';
+    }
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            // Set up the transaction details
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency_code: 'USD', // Change this to your desired currency code
+                        value: '<%=dcf.format(total)%>'
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // Capture the funds from the transaction
+            return actions.order.capture().then(function (details) {
+                // Hide PayPal button container
+                document.getElementById('paypal-button-container').style.display = 'none';
+
+                // Show the success message
+                document.getElementById('success-message').style.display = 'block';
+
+                // Make an AJAX call to the CartServlet
+                $.ajax({
+                    url: '/cart-check-out',
+                    method: 'GET',
+                    success: function(response) {
+                        // Handle the response if needed
+                    },
+                    error: function(error) {
+                        console.error('Error in AJAX call:', error);
+                        // Handle the error if needed
+                    }
+                });
+                // Make an AJAX call to the Checkout-Servlet
+                $.ajax({
+                    url: '/Checkout-Servlet',
+                    method: 'POST',
+                    success: function (response) {
+                        // Additional logic after payment success, if needed
+                    },
+                    error: function (error) {
+                        console.error('Error in AJAX call:', error);
+                        // Handle the error if needed
+                    }
+                });
+            });
+
+
+        },
+        onError: function (err) {
+            // Handle errors or display an error message to the user
+            console.error('PayPal error:', err);
+            // You can display an error message to the user here
+        }
+    }).render('#paypal-button-container');
+
+</script>
+
+
 
 <!-- Bootstrap JS and Popper.js scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
