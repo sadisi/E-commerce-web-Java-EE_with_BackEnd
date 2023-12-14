@@ -46,7 +46,13 @@ public class CartServlet extends HttpServlet {
 
 					boolean result = oDao.insertOrder(order);
 
-					if (!result) {
+					if (result) {
+						// Send order confirmation email
+						SendEmailUtil.sendOrderConfirmationEmail(auth.getEmail(), orderNum);
+
+						// Set orderNum in the session
+						request.getSession().setAttribute("orderNum", orderNum);
+					} else {
 						// Handle the case where order insertion failed
 						response.getWriter().write("Order processing failed");
 						return;

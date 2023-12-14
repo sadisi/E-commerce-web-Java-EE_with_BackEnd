@@ -22,15 +22,6 @@ public class CheckoutServlet extends HttpServlet {
         ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cart-list");
 
         if (cartList != null && !cartList.isEmpty()) {
-            // Retrieve user email from the session (assuming it is set during login)
-            User auth = (User) session.getAttribute("auth");
-            String userEmail = auth.getEmail(); // Replace with the actual method to get the user's email from the User object
-
-            // Retrieve orderNum from the session
-            String orderNum = (String) session.getAttribute("orderNum");
-
-            // Send order confirmation email
-            SendEmailUtil.sendOrderConfirmationEmail(userEmail, orderNum);
 
             session.setAttribute("checkout-cart-list", cartList);
 
