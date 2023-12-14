@@ -28,7 +28,7 @@
 <html>
 <head>
 <%@include file="/includes/head.jsp"%>
-<title>Swift Super</title>
+<title>Green Store Orders</title>
 
 	<style>
 		.space-top-botom-default-order{
