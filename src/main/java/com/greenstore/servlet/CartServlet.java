@@ -33,44 +33,44 @@ public class CartServlet extends HttpServlet {
 			User auth = (User) request.getSession().getAttribute("auth");
 
 			if (cart_list != null && auth != null) {
-				OrderDao oDao = new OrderDao(DbCon.getConnection());
-				String orderNum = generateOrderNumber();
+                OrderDao oDao = new OrderDao(DbCon.getConnection());
+                String orderNum = generateOrderNumber();
 
-				for (Cart c : cart_list) {
-					Order order = new Order();
-					order.setId(c.getId());
-					order.setUid(auth.getId());
-					order.setQunatity(c.getQuantity());
-					order.setDate(formatter.format(date));
-					order.setOrderNum(orderNum);
+                // List to store orders for all products
+                List<Order> orders = new ArrayList<>();
 
-					boolean result = oDao.insertOrder(order);
+                Order order = null;
+                for (Cart c : cart_list) {
+                    order = new Order();
+                    order.setId(c.getId());
+                    order.setUid(auth.getId());
+                    order.setQunatity(c.getQuantity());
+                    order.setDate(formatter.format(date));
+                    order.setOrderNum(orderNum);
 
-					if (result) {
-						// Send order confirmation email
-						SendEmailUtil.sendOrderConfirmationEmail(auth.getEmail(), orderNum);
+                    orders.add(order);
+                }
 
-						// Set orderNum in the session
-						request.getSession().setAttribute("orderNum", orderNum);
-					} else {
-						// Handle the case where order insertion failed
-						response.getWriter().write("Order processing failed");
-						return;
-					}
-				}
+                // Insert all orders into the database
+                boolean result = oDao.insertOrder(order);
 
-				cart_list.clear();
+                if (result) {
+                    // Send order confirmation email
+                    SendEmailUtil.sendOrderConfirmationEmail(auth.getEmail(), orderNum);
 
-				// Assuming the last order in the loop is representative for order ID
-				int orderIdInt = cart_list.get(cart_list.size() - 1).getId();
+                    // Set orderNum in the session
+                    request.getSession().setAttribute("orderNum", orderNum);
 
-                 // Set orderNum in the session
-				request.getSession().setAttribute("orderNum", orderNum);
+                    // Clear the cart after successful order processing
+                    cart_list.clear();
 
-
-				// Send a success response
-				response.getWriter().write("Order processed successfully");
-			} else {
+                    // Send a success response
+                    response.getWriter().write("Order processed successfully");
+                } else {
+                    // Handle the case where order insertion failed
+                    response.getWriter().write("Order processing failed");
+                }
+            } else {
 				if (auth == null) {
 					// Send a response indicating the need for authentication
 					response.getWriter().write("Authentication required");

@@ -25,13 +25,40 @@ public class SendEmailUtil {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
             message.setSubject("Order Confirmation");
 
-            // HTML content for styling the message
+            //email massage
             String emailContent = "<html>"
+                    + "<head>"
+                    + "<style>"
+                    + "body {"
+                    + "    font-family: 'Arial', sans-serif;"
+                    + "    background-color: #f4f4f4;"
+                    + "    color: #333;"
+                    + "}"
+                    + ".header {"
+                    + "    background-color: #800080; /* Purple color */"
+                    + "    color: #000; /* Black color */"
+                    + "    padding: 10px;"
+                    + "    text-align: center;"
+                    + "}"
+                    + "p {"
+                    + "    font-size: 16px;"
+                    + "    margin-bottom: 10px;"
+                    + "}"
+                    + "strong {"
+                    + "    color: #555;"
+                    + "}"
+                    + "</style>"
+                    + "</head>"
                     + "<body>"
-                    + "<p style='font-size: 16px; color: #333;'>Thank you for your purchase!</p>"
-                    + "<p style='font-size: 14px; color: #555;'>Your order ID is: <strong>" + orderNum + "</strong></p>"
+                    + "<div class='header'>"
+                    + "    <h1>Swift<span style='color: #800080;'>Super</span></h1>"
+                    + "</div>"
+                    + "<p>Thank you for your purchase!</p>"
+                    + "<p>Your order ID is: <strong>" + orderNum + "</strong></p>"
                     + "</body>"
                     + "</html>";
+
+
 
             // Set the HTML content
             message.setContent(emailContent, "text/html");
