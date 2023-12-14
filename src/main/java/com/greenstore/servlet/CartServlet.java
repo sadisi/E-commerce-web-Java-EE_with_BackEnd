@@ -20,90 +20,95 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/cart-check-out")
-public class CartServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try (PrintWriter out = response.getWriter()) {
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
-			User auth = (User) request.getSession().getAttribute("auth");
+	@WebServlet("/cart-check-out")
+	public class CartServlet extends HttpServlet {
+		private static final long serialVersionUID = 1L;
 
-			if (cart_list != null && auth != null) {
-                OrderDao oDao = new OrderDao(DbCon.getConnection());
-                String orderNum = generateOrderNumber();
+		protected void doGet(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			try (PrintWriter out = response.getWriter()) {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = new Date();
+				ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
+				User auth = (User) request.getSession().getAttribute("auth");
 
-                // List to store orders for all products
-                List<Order> orders = new ArrayList<>();
+				if (cart_list != null && auth != null) {
+                    OrderDao oDao = new OrderDao(DbCon.getConnection());
 
-                Order order = null;
-                for (Cart c : cart_list) {
-                    order = new Order();
-                    order.setId(c.getId());
-                    order.setUid(auth.getId());
-                    order.setQunatity(c.getQuantity());
-                    order.setDate(formatter.format(date));
-                    order.setOrderNum(orderNum);
+                    // List to store orders for all products
+                    List<Order> orders = new ArrayList<>();
 
-                    orders.add(order);
-                }
+                    Order order = null;
+                    for (Cart c : cart_list) {
+                        order = new Order();
+                        order.setId(c.getId());
+                        order.setUid(auth.getId());
+                        order.setQunatity(c.getQuantity());
+                        order.setDate(formatter.format(date));
 
-                // Insert all orders into the database
-                boolean result = oDao.insertOrder(order);
+                        // Generate a unique order number for each order
+                        String orderNum = generateOrderNumber();
+                        order.setOrderNum(orderNum);
 
-                if (result) {
-                    // Send order confirmation email
-                    SendEmailUtil.sendOrderConfirmationEmail(auth.getEmail(), orderNum);
+                        // Add the order to the list
+                        orders.add(order);
+                    }
 
-                    // Set orderNum in the session
-                    request.getSession().setAttribute("orderNum", orderNum);
+                    // Insert all orders into the database
+					boolean result = oDao.insertOrders(orders);
 
-                    // Clear the cart after successful order processing
-                    cart_list.clear();
 
-                    // Send a success response
-                    response.getWriter().write("Order processed successfully");
+					if (result) {
+                        // Send a single order confirmation email for all orders
+                        SendEmailUtil.sendOrderConfirmationEmail(auth.getEmail(), orders.get(0).getOrderNum());
+
+                        // Set orderNum in the session (you can choose any orderNum from the list)
+                        request.getSession().setAttribute("orderNum", orders.get(0).getOrderNum());
+
+                        // Clear the cart after successful order processing
+                        cart_list.clear();
+
+                        // Send a success response
+                        response.getWriter().write("Orders processed successfully");
+                    } else {
+                        // Handle the case where order insertion failed
+                        response.getWriter().write("Order processing failed");
+                    }
                 } else {
-                    // Handle the case where order insertion failed
-                    response.getWriter().write("Order processing failed");
-                }
-            } else {
-				if (auth == null) {
-					// Send a response indicating the need for authentication
-					response.getWriter().write("Authentication required");
-				} else {
-					// Send a response indicating the failure of order processing
-					response.getWriter().write("Order processing failed");
+					if (auth == null) {
+						// Send a response indicating the need for authentication
+						response.getWriter().write("Authentication required");
+					} else {
+						// Send a response indicating the failure of order processing
+						response.getWriter().write("Order processing failed");
+					}
 				}
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+				// Send a response indicating the failure of order processing
+				response.getWriter().write("Order processing failed");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-			// Send a response indicating the failure of order processing
-			response.getWriter().write("Order processing failed");
+		}
+
+		protected void doPost(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			// TODO Auto-generated method stub
+			doGet(request, response);
+		}
+
+		private String generateOrderNumber() {
+			// Static prefix for the order number
+			String prefix = "ORD";
+
+			// Generate a timestamp portion
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+			String timestamp = dateFormat.format(new Date());
+
+			// Generate a random portion using UUID
+			String randomString = UUID.randomUUID().toString().replace("-", "").substring(0, 6);
+
+			// Combine all parts to form the unique order number
+			return prefix + timestamp + randomString;
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
-	private String generateOrderNumber() {
-		// Static prefix for the order number
-		String prefix = "ORD";
-
-		// Generate a timestamp portion
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-		String timestamp = dateFormat.format(new Date());
-
-		// Generate a random portion using UUID
-		String randomString = UUID.randomUUID().toString().replace("-", "").substring(0, 6);
-
-		// Combine all parts to form the unique order number
-		return prefix + timestamp + randomString;
-	}
-}
