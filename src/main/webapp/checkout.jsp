@@ -200,18 +200,7 @@
                         // Handle the error if needed
                     }
                 });
-                // Make an AJAX call to the Checkout-Servlet
-                $.ajax({
-                    url: '/Checkout-Servlet',
-                    method: 'POST',
-                    success: function (response) {
-                        // Additional logic after payment success, if needed
-                    },
-                    error: function (error) {
-                        console.error('Error in AJAX call:', error);
-                        // Handle the error if needed
-                    }
-                });
+
             });
 
 
